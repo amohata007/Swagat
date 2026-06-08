@@ -283,10 +283,15 @@ body{background:var(--cream);color:var(--td);font-family:'EB Garamond',serif;ove
 #main{opacity:0;transition:opacity .8s ease}
 #main.vis{opacity:1}
 
-@media(max-width:540px){
+body{overflow-x:hidden}
+.tree-container{width:100%;overflow-x:hidden}
+.tree-svg-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:8px}
+.tree-svg-wrap svg{min-width:500px;width:100%;height:auto;display:block}
+
+@media(max-width:768px){
   .sec{padding:36px 14px}
   .cg{gap:10px}.cb{padding:12px 14px;min-width:62px}.cn{font-size:28px}
-  .tree-svg-wrap{min-width:500px}
+  .tree-svg-wrap{border-radius:12px;border:1px solid var(--creamd)}
 }
 </style>
 </head>
@@ -379,9 +384,9 @@ body{background:var(--cream);color:var(--td);font-family:'EB Garamond',serif;ove
   </div>
 
   <!-- FAMILY TREE -->
-  <section class="fbg">
-    <div class="sec">
-      <div class="sh rev">
+<section class="fbg" style="overflow:hidden">
+    <div class="sec" style="overflow:hidden;padding-left:0;padding-right:0">
+      <div class="sh rev" style="padding:0 24px">
         <span class="sl">With Blessings of</span>
         <h2 class="st">Mohata Parivar — Family Tree</h2>
       </div>
@@ -552,7 +557,7 @@ body{background:var(--cream);color:var(--td);font-family:'EB Garamond',serif;ove
       </div>
       <div class="wish-count" id="wishCount"></div>
       <div class="wish-list" id="wlist"></div>
-      <p class="wish-note">🌸 Wishes are saved on this device. To share with everyone, forward this page link on WhatsApp!</p>
+      <p class="wish-note">🌸 RADHE RADHE 🌸</p>
     </div>
   </section>
 
@@ -709,64 +714,72 @@ function startPetals(){
 // ══════════════════════════════════
 // WISHES — localStorage (per device)
 // ══════════════════════════════════
-const WISH_KEY = 'mohata_grahpravesh_wishes_v1';
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyG1SiCiNYkpkLaZgaoygfjNUWwf9OVD44Dnm_3djuPlb-MIcaE6_j-Ta_39TS279Pg/exec';
 
-// Seed wishes (shown on first load)
-const seedWishes = [
-  { name: 'Sharma Ji', msg: '🪔 May your new home be filled with light, love and laughter. Congratulations Mohata ji!', time: '08 June' },
-  { name: 'Patel Family', msg: '🌸 Wishing you a lifetime of happiness in your beautiful new home. Shubh Pravesh!', time: '10 June' }
-];
-
-function loadWishes() {
+async function loadWishes() {
   try {
-    const raw = localStorage.getItem(WISH_KEY);
-    return raw ? JSON.parse(raw) : seedWishes;
+    const res = await fetch(SHEET_URL);
+    const data = await res.json();
+    return data.reverse();
   } catch(e) {
-    return seedWishes;
+    return [];
   }
 }
 
-function saveWishes(wishes) {
-  try {
-    localStorage.setItem(WISH_KEY, JSON.stringify(wishes));
-  } catch(e) {}
+async function saveWish(wish) {
+  await fetch(SHEET_URL, {
+    method: 'POST',
+    body: JSON.stringify(wish)
+  });
 }
 
-function renderWishes() {
-  const wishes = loadWishes();
+async function renderWishes() {
   const list = document.getElementById('wlist');
+  const countEl = document.getElementById('wishCount');
+  list.innerHTML = '<p style="text-align:center;color:var(--tl);font-style:italic">Loading blessings... 🙏</p>';
+  const wishes = await loadWishes();
   list.innerHTML = '';
+  if(wishes.length === 0) {
+    list.innerHTML = '<p style="text-align:center;color:var(--tl);font-style:italic">Be the first to send blessings! 🌸</p>';
+  }
   wishes.forEach(w => {
     const item = document.createElement('div');
     item.className = 'wish-item';
-    item.innerHTML = `<p class="wish-from">${escapeHTML(w.name)}</p><p class="wish-msg">${escapeHTML(w.msg)}</p><p class="wish-time">${w.time || ''}</p>`;
+    item.innerHTML = `<p class="wish-from">${escapeHTML(w.name)}</p>
+                      <p class="wish-msg">${escapeHTML(w.msg)}</p>
+                      <p class="wish-time">${w.time || ''}</p>`;
     list.appendChild(item);
   });
-  const countEl = document.getElementById('wishCount');
   countEl.textContent = `🙏 ${wishes.length} blessing${wishes.length !== 1 ? 's' : ''} received`;
 }
 
 function escapeHTML(str) {
-  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-function addWish(){
+async function addWish() {
   const name = document.getElementById('wname').value.trim();
-  const msg = document.getElementById('wmsg').value.trim();
-  if(!name||!msg)return;
-  const wishes = loadWishes();
+  const msg  = document.getElementById('wmsg').value.trim();
+  if(!name || !msg) return;
   const now = new Date();
-  const timeStr = now.toLocaleDateString('en-IN',{day:'numeric',month:'long'}) + ' · ' + now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
-  wishes.unshift({ name, msg, time: timeStr });
-  saveWishes(wishes);
-  document.getElementById('wname').value='';
-  document.getElementById('wmsg').value='';
-  renderWishes();
-  document.getElementById('wlist').firstChild?.scrollIntoView({behavior:'smooth',block:'nearest'});
+  const time = now.toLocaleDateString('en-IN',{day:'numeric',month:'long'}) 
+             + ' · ' + now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+  const wish = { name, msg, time };
+  document.getElementById('wname').value = '';
+  document.getElementById('wmsg').value = '';
+  await saveWish(wish);
+  await renderWishes();
 }
 
-document.addEventListener('DOMContentLoaded', renderWishes);
-document.getElementById('wmsg').addEventListener('keydown',e=>{if(e.key==='Enter')addWish();});
+// Auto-refresh every 30 seconds
+document.addEventListener('DOMContentLoaded', () => {
+  renderWishes();
+  setInterval(renderWishes, 30000);
+});
+
+document.getElementById('wmsg').addEventListener('keydown', e => {
+  if(e.key === 'Enter') addWish();
+});
 </script>
 </body>
 </html>
