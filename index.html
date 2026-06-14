@@ -1524,6 +1524,43 @@
         border: 1px solid var(--creamd)
       }
     }
+
+    .door-enter{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:5;
+  cursor:pointer;
+  color:#F0B429;
+  text-align:center;
+  font-family:'Cinzel',serif;
+  letter-spacing:2px;
+}
+
+.door-enter div{
+  font-size:22px;
+  animation:pulseDoor 2s infinite;
+}
+
+.door-enter small{
+  margin-top:8px;
+  font-size:11px;
+  opacity:.8;
+}
+
+@keyframes pulseDoor{
+  0%,100%{
+    transform:scale(1);
+    text-shadow:0 0 10px rgba(240,180,41,.4);
+  }
+  50%{
+    transform:scale(1.08);
+    text-shadow:0 0 25px rgba(240,180,41,.9);
+  }
+}
   </style>
 </head>
 
@@ -1556,6 +1593,9 @@
     <div class="i-om" id="iom">ॐ</div>
 
     <div class="door-wrap">
+      <div class="door-enter" id="doorEnter" onclick="startExperience()">
+  <div>🪔 द्वार खोलें 🪔</div>
+</div>
       <div class="d-toran" id="toran">🌺🍃🌸🍃🌼🍃🌸🍃🌺</div>
       <div class="d-frame">
         <div class="d-glow" id="dglow"></div>
@@ -1592,8 +1632,8 @@
         <span class="diya">🪔</span><span class="diya">🌸</span><span class="diya">🪔</span><span
           class="diya">🌸</span><span class="diya">🪔</span>
       </div>
-      <div class="om-h">ॐ</div>
       <p class="ganesh-line">॥ श्री गणेशाय नमः ॥</p>
+      <div class="om-h">ॐ</div>
       <span class="stag">शुभ गृह प्रवेश</span>
       <h1 class="htitle">मोहता परिवार</h1>
       <p class="hname">मनोज घनश्याम दास मोहता</p>
@@ -1979,7 +2019,7 @@
       }, 800);
     }
     function skipIntro() { finishIntro(); }
-    window.addEventListener('load', () => setTimeout(playDoor, 700));
+   
 
     // ══════════════════════════════════
     // COUNTDOWN
@@ -2092,6 +2132,32 @@
     document.getElementById('wmsg').addEventListener('keydown', e => {
       if (e.key === 'Enter') addWish();
     });
+
+    function startExperience() {
+
+  audio.play().catch(()=>{});
+
+  musicPlaying = true;
+  musicStartedOnce = true;
+  updateMusicUI();
+
+  document.getElementById('doorEnter').style.display = 'none';
+
+  document.getElementById('iom').style.opacity = '0';
+
+  setTimeout(() => {
+    document.getElementById('dleft').classList.add('open');
+    document.getElementById('dright').classList.add('open');
+    document.getElementById('dglow').classList.add('on');
+  }, 300);
+
+  setTimeout(() => {
+    document.getElementById('dwelcome').classList.add('on');
+    document.getElementById('ikolam').classList.add('on');
+  }, 1800);
+
+  setTimeout(finishIntro, 5000);
+}
   </script>
 </body>
 
