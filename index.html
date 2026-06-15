@@ -1525,43 +1525,46 @@
       }
     }
 
-    .door-enter{
-  position:absolute;
-  inset:0;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  z-index:5;
-  cursor:pointer;
-  color:#F0B429;
-  text-align:center;
-  font-family:'Cinzel',serif;
-  letter-spacing:2px;
-}
+    .door-enter {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 5;
+      cursor: pointer;
+      color: #F0B429;
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 2px;
+    }
 
-.door-enter div{
-  margin-bottom: 50px;
-  font-size:22px;
-  animation:pulseDoor 2s infinite;
-}
+    .door-enter div {
+      margin-bottom: 50px;
+      font-size: 22px;
+      animation: pulseDoor 2s infinite;
+    }
 
-.door-enter small{
-  margin-top:8px;
-  font-size:11px;
-  opacity:.8;
-}
+    .door-enter small {
+      margin-top: 8px;
+      font-size: 11px;
+      opacity: .8;
+    }
 
-@keyframes pulseDoor{
-  0%,100%{
-    transform:scale(1);
-    text-shadow:0 0 10px rgba(240,180,41,.4);
-  }
-  50%{
-    transform:scale(1.08);
-    text-shadow:0 0 25px rgba(240,180,41,.9);
-  }
-}
+    @keyframes pulseDoor {
+
+      0%,
+      100% {
+        transform: scale(1);
+        text-shadow: 0 0 10px rgba(240, 180, 41, .4);
+      }
+
+      50% {
+        transform: scale(1.08);
+        text-shadow: 0 0 25px rgba(240, 180, 41, .9);
+      }
+    }
   </style>
 </head>
 
@@ -1595,8 +1598,8 @@
 
     <div class="door-wrap">
       <div class="door-enter" id="doorEnter" onclick="startExperience()">
-  <div>🪔 द्वार खोलें 🪔</div>
-</div>
+        <div>🪔 द्वार खोलें 🪔</div>
+      </div>
       <div class="d-toran" id="toran">🌺🍃🌸🍃🌼🍃🌸🍃🌺</div>
       <div class="d-frame">
         <div class="d-glow" id="dglow"></div>
@@ -2020,7 +2023,7 @@
       }, 800);
     }
     function skipIntro() { finishIntro(); }
-   
+
 
     // ══════════════════════════════════
     // COUNTDOWN
@@ -2136,29 +2139,29 @@
 
     function startExperience() {
 
-  audio.play().catch(()=>{});
+      audio.play().catch(() => { });
 
-  musicPlaying = true;
-  musicStartedOnce = true;
-  updateMusicUI();
+      musicPlaying = true;
+      musicStartedOnce = true;
+      updateMusicUI();
 
-  document.getElementById('doorEnter').style.display = 'none';
+      document.getElementById('doorEnter').style.display = 'none';
 
-  document.getElementById('iom').style.opacity = '0';
+      document.getElementById('iom').style.opacity = '0';
 
-  setTimeout(() => {
-    document.getElementById('dleft').classList.add('open');
-    document.getElementById('dright').classList.add('open');
-    document.getElementById('dglow').classList.add('on');
-  }, 300);
+      setTimeout(() => {
+        document.getElementById('dleft').classList.add('open');
+        document.getElementById('dright').classList.add('open');
+        document.getElementById('dglow').classList.add('on');
+      }, 300);
 
-  setTimeout(() => {
-    document.getElementById('dwelcome').classList.add('on');
-    document.getElementById('ikolam').classList.add('on');
-  }, 1800);
+      setTimeout(() => {
+        document.getElementById('dwelcome').classList.add('on');
+        document.getElementById('ikolam').classList.add('on');
+      }, 1800);
 
-  setTimeout(finishIntro, 5000);
-}
+      setTimeout(finishIntro, 5000);
+    }
   </script>
 </body>
 
