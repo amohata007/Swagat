@@ -85,6 +85,119 @@
       background: linear-gradient(90deg, var(--maroon), var(--saffron), var(--goldl), var(--saffron), var(--maroon))
     }
 
+   .gen-sec {
+  padding: 56px 24px;
+  background: linear-gradient(180deg, var(--cream) 0%, #FBF0DA 50%, var(--cream) 100%);
+}
+
+.gen-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  max-width: 520px;
+  margin: 0 auto 24px;
+  flex-wrap: wrap;
+}
+
+.gen-person {
+  text-align: center;
+}
+
+/* Elder — calm, dignified ring */
+.gen-frame-elder {
+  width: 130px;
+  height: 130px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.gen-frame-elder::before {
+  content: '';
+  position: absolute;
+  inset: -7px;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 134, 10, .4);
+}
+
+.gen-frame-elder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid white;
+  box-shadow: 0 6px 20px rgba(201, 134, 10, .25);
+  display: block;
+}
+
+/* Kid — playful spinning dashed ring */
+.gen-frame-kid {
+  width: 130px;
+  height: 130px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.gen-frame-kid::before {
+  content: '';
+  position: absolute;
+  inset: -7px;
+  border-radius: 50%;
+  border: 2px dashed rgba(232, 98, 10, .45);
+  animation: kidSpin 20s linear infinite;
+}
+
+@keyframes kidSpin { to { transform: rotate(360deg) } }
+
+.gen-frame-kid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid white;
+  box-shadow: 0 6px 20px rgba(201, 134, 10, .25);
+  display: block;
+}
+
+.gen-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--maroon);
+  margin-bottom: 2px;
+}
+
+.gen-tag {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.gen-connector {
+  font-size: 26px;
+  animation: connPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes connPulse {
+  from { transform: scale(1) }
+  to { transform: scale(1.15) }
+}
+
+.gen-msg {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  font-style: italic;
+  color: var(--tm);
+  line-height: 1.85;
+  max-width: 420px;
+  margin: 0 auto;
+  text-align: center;
+}
+
     /* Marigold garland top */
     .i-garland {
       position: absolute;
@@ -1652,7 +1765,7 @@
       <h1 class="htitle">मोहता परिवार</h1>
       <p class="hname">मनोज घनश्याम दास मोहता</p>
       <p class="hflat">फ्लैट D-1113 · स्वागत कैलिस्टा</p>
-      <p class="hsub">आपके आशीर्वाद से यह घर, घर बनेगा</p>
+      <p class="hsub">नई शुरुआत के इस मंगल अवसर पर आपका हार्दिक स्वागत है।</p>
       <div class="dorn"><span>✦</span></div>
       <p class="hinvite">
         हृदय में आनंद और कृतज्ञता लिए,<br>
@@ -1678,149 +1791,6 @@
           stroke-width="1.5" opacity="0.45" />
       </svg>
     </div>
-
-    <!-- FAMILY TREE -->
-    <section class="fbg" style="overflow:hidden">
-      <div class="sec" style="overflow:hidden;padding-left:0;padding-right:0">
-        <div class="sh rev" style="padding:0 24px">
-          <span class="sl">With Blessings of</span>
-          <h2 class="st">Mohata Parivar — Family Tree</h2>
-        </div>
-        <div class="tree-container rev">
-          <div class="tree-svg-wrap">
-            <svg viewBox="0 0 900 580" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
-              <defs>
-                <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="#C9860A" stop-opacity=".4" />
-                  <stop offset="50%" stop-color="#F0B429" stop-opacity="1" />
-                  <stop offset="100%" stop-color="#C9860A" stop-opacity=".4" />
-                </linearGradient>
-                <linearGradient id="nodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#FFFDF8" />
-                  <stop offset="100%" stop-color="#FDF0DC" />
-                </linearGradient>
-                <linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#C44E06" />
-                  <stop offset="100%" stop-color="#F0B429" />
-                </linearGradient>
-                <filter id="shadow">
-                  <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="rgba(201,134,10,.25)" />
-                </filter>
-              </defs>
-              <style>
-                .tl {
-                  fill: none;
-                  stroke: #D4A017;
-                  stroke-width: 2.5;
-                  stroke-linecap: round;
-                  stroke-dasharray: 5 4
-                }
-              </style>
-
-              <!-- ROOT: Ghanshyam Das + Ramkawri -->
-              <g filter="url(#shadow)">
-                <rect x="250" y="20" width="400" height="80" rx="14" fill="url(#nodeGrad)" stroke="#C9860A"
-                  stroke-width="1.5" />
-                <text x="450" y="46" text-anchor="middle" font-family="Playfair Display, serif" font-size="14"
-                  font-weight="600" fill="#2C1810">स्व. घनश्याम दास जी ❤️ रामकंवरी देवी</text>
-                <text x="450" y="66" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="11"
-                  fill="#8B5E3C" font-style="italic">पिता एवं माता</text>
-                <text x="450" y="83" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="11"
-                  fill="#8B5E3C">मोहता परिवार</text>
-              </g>
-
-              <!-- Trunk lines — adjusted for taller root box -->
-              <line class="tl" x1="450" y1="100" x2="450" y2="148" />
-              <line class="tl" x1="200" y1="148" x2="700" y2="148" />
-              <line class="tl" x1="200" y1="148" x2="200" y2="173" />
-              <line class="tl" x1="700" y1="148" x2="700" y2="173" />
-
-              <!-- MANOJ + SANGITA (hero) -->
-              <g filter="url(#shadow)">
-                <rect x="80" y="173" width="240" height="68" rx="12" fill="url(#heroGrad)" stroke="#E8620A"
-                  stroke-width="2" />
-                <text x="200" y="203" text-anchor="middle" font-family="Playfair Display, serif" font-size="14"
-                  font-weight="600" fill="white">मनोज ❤️ संगीता</text>
-                <text x="200" y="223" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="11"
-                  fill="rgba(255,255,255,.8)">गृह स्वामी — D-1113</text>
-              </g>
-
-              <!-- PRADEEP + VINITA -->
-              <g filter="url(#shadow)">
-                <rect x="580" y="173" width="240" height="68" rx="12" fill="url(#nodeGrad)" stroke="#C9860A"
-                  stroke-width="1.5" />
-                <text x="700" y="203" text-anchor="middle" font-family="Playfair Display, serif" font-size="14"
-                  font-weight="600" fill="#2C1810">प्रदीप ❤️ विनीता</text>
-                <text x="700" y="223" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="11"
-                  fill="#8B5E3C">भाई एवं देवरानी</text>
-              </g>
-
-              <!-- Manoj children lines -->
-              <line class="tl" x1="200" y1="241" x2="200" y2="291" />
-              <line class="tl" x1="110" y1="291" x2="310" y2="291" />
-              <line class="tl" x1="110" y1="291" x2="110" y2="318" />
-              <line class="tl" x1="310" y1="291" x2="310" y2="318" />
-
-              <!-- ABHISHEK + POOJA -->
-              <g filter="url(#shadow)">
-                <rect x="15" y="318" width="190" height="60" rx="12" fill="url(#nodeGrad)" stroke="#C9860A"
-                  stroke-width="1.5" />
-                <text x="110" y="345" text-anchor="middle" font-family="Playfair Display, serif" font-size="13"
-                  font-weight="600" fill="#2C1810">अभिषेक ❤️ पूजा</text>
-                <text x="110" y="364" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="11"
-                  fill="#8B5E3C">पुत्र एवं पुत्रवधू</text>
-              </g>
-
-              <!-- RIYA -->
-              <g filter="url(#shadow)">
-                <rect x="250" y="318" width="120" height="60" rx="12" fill="url(#nodeGrad)" stroke="#C9860A"
-                  stroke-width="1.5" />
-                <text x="310" y="345" text-anchor="middle" font-family="Playfair Display, serif" font-size="13"
-                  font-weight="600" fill="#2C1810">रिया</text>
-                <text x="310" y="364" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="11"
-                  fill="#8B5E3C">पुत्री</text>
-              </g>
-
-              <!-- Rudvik(Chiku) line -->
-              <line class="tl" x1="110" y1="378" x2="110" y2="413" />
-              <g filter="url(#shadow)">
-                <rect x="55" y="413" width="110" height="50" rx="10" fill="#FDF6E9" stroke="#C9860A" stroke-width="1" />
-                <text x="110" y="434" text-anchor="middle" font-family="Playfair Display, serif" font-size="12"
-                  fill="#2C1810">👶 रुद्विक</text>
-                <text x="110" y="451" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="10"
-                  fill="#8B5E3C">पोता</text>
-              </g>
-
-              <!-- Pradeep children lines -->
-              <line class="tl" x1="700" y1="241" x2="700" y2="291" />
-              <line class="tl" x1="620" y1="291" x2="780" y2="291" />
-              <line class="tl" x1="620" y1="291" x2="620" y2="318" />
-              <line class="tl" x1="780" y1="291" x2="780" y2="318" />
-
-              <!-- JHANVI -->
-              <g filter="url(#shadow)">
-                <rect x="555" y="318" width="130" height="60" rx="12" fill="url(#nodeGrad)" stroke="#C9860A"
-                  stroke-width="1.5" />
-                <text x="620" y="345" text-anchor="middle" font-family="Playfair Display, serif" font-size="13"
-                  font-weight="600" fill="#2C1810">जाह्नवी</text>
-                <text x="620" y="364" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="11"
-                  fill="#8B5E3C">भतीजी</text>
-              </g>
-
-              <!-- LAKSHYA -->
-              <g filter="url(#shadow)">
-                <rect x="715" y="318" width="130" height="60" rx="12" fill="url(#nodeGrad)" stroke="#C9860A"
-                  stroke-width="1.5" />
-                <text x="780" y="345" text-anchor="middle" font-family="Playfair Display, serif" font-size="13"
-                  font-weight="600" fill="#2C1810">लक्ष्य</text>
-                <text x="780" y="364" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="11"
-                  fill="#8B5E3C">भतीजा</text>
-              </g>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- PROGRAM -->
     <section class="sec">
@@ -1866,7 +1836,7 @@
               <div class="pi-dot"></div>
               <div>
                 <p class="pi-name">भोजन प्रसाद</p>
-                <p class="pi-desc">भोजन एवं प्रसाद — आपका आशीर्वाद हमारा घर पूरा करेगा</p>
+                <p class="pi-desc">भोजन एवं प्रसाद — कृपया पधारें, आशीर्वाद दें और प्रसाद ग्रहण करें।</p>
               </div>
             </div>
           </div>
@@ -1909,6 +1879,47 @@
       </div>
     </section>
 
+    <!-- <section class="kid-sec">
+  <div class="sh rev">
+    <span class="sl">A Little Voice, A Big Invitation</span>
+    <h2 class="st">घर का सबसे छोटा सदस्य आपको बुला रहा है 💌</h2>
+  </div>
+  <div class="kid-card rev">
+    <div class="kid-frame">
+      <img src="asset/rudvik.jpg" alt="रुद्विक">
+      <div class="kid-badge">👶</div>
+    </div>
+    <p class="kid-name">रुद्विक</p>
+    <p class="kid-tag">हमारे घर की सबसे प्यारी मुस्कान</p>
+    <p class="kid-msg">"ज़रूर ज़रूर आइएगा हमारे घर, मैं इंतज़ार करूँगा!"</p>
+  </div>
+</section> -->
+
+<section class="gen-sec">
+  <div class="sh rev">
+    <span class="sl">Blessings Meet Joy</span>
+    <h2 class="st">आशीर्वाद और उमंग — दोनों मिलकर आपको बुला रहे हैं 💌</h2>
+  </div>
+  <div class="gen-row rev">
+    <div class="gen-person">
+      <div class="gen-frame-elder">
+        <img src="asset/elder.jpg" alt="रामकंवरी देवी">
+      </div>
+      <p class="gen-name">रामकंवरी देवी</p>
+      <p class="gen-tag">दादी माँ</p>
+    </div>
+    <div class="gen-connector">🪔</div>
+    <div class="gen-person">
+      <div class="gen-frame-kid">
+        <img src="asset/rudvik.jpg" alt="रुद्विक">
+      </div>
+      <p class="gen-name">रुद्विक</p>
+      <p class="gen-tag">सबसे छोटा सदस्य</p>
+    </div>
+  </div>
+  <p class="gen-msg rev">सबसे छोटी मुस्कान से लेकर सबसे बड़े आशीर्वाद तक...  हमारा परिवार आपको आमंत्रित करता है 🪔</p>
+</section>
+
     <!-- WISHES WIDGET -->
     <section class="sec">
       <div class="sh rev"><span class="sl">Leave Your Blessings</span>
@@ -1936,6 +1947,10 @@
       <div class="fdeco"><span>🪔</span><span>🌸</span><span>🪷</span><span>🌸</span><span>🪔</span></div>
       <p class="ff">मोहता परिवार</p>
       <p class="fn">आपके आशीर्वाद से यह घर, घर बनेगा 🙏</p>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:15px;color:rgba(253,246,233,.6);font-style:italic;margin-top:14px">
+  With regards,<br>
+  <span style="font-family:'Playfair Display',serif;font-size:17px;color:var(--goldl);font-style:normal;font-weight:600">Manoj Ghanshyam Das Mohata</span>
+</p>
       <p
         style="font-family:'Cormorant Garamond',serif;font-size:13px;color:rgba(253,246,233,.3);margin-top:18px;font-style:italic">
         11 जुलाई 2026 · फ्लैट D-1113, स्वागत कैलिस्टा, सूरत</p>
