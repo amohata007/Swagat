@@ -85,118 +85,127 @@
       background: linear-gradient(90deg, var(--maroon), var(--saffron), var(--goldl), var(--saffron), var(--maroon))
     }
 
-   .gen-sec {
-  padding: 56px 24px;
-  background: linear-gradient(180deg, var(--cream) 0%, #FBF0DA 50%, var(--cream) 100%);
-}
+    .gen-sec {
+      padding: 56px 24px;
+      background: linear-gradient(180deg, var(--cream) 0%, #FBF0DA 50%, var(--cream) 100%);
+    }
 
-.gen-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 28px;
-  max-width: 520px;
-  margin: 0 auto 24px;
-  flex-wrap: wrap;
-}
+    .gen-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      max-width: 520px;
+      margin: 0 auto 24px;
+      flex-wrap: wrap;
+    }
 
-.gen-person {
-  text-align: center;
-}
+    .gen-person {
+      text-align: center;
+    }
 
-/* Elder — calm, dignified ring */
-.gen-frame-elder {
-  width: 130px;
-  height: 130px;
-  margin: 0 auto 14px;
-  border-radius: 50%;
-  position: relative;
-}
+    /* Elder — calm, dignified ring */
+    .gen-frame-elder {
+      width: 130px;
+      height: 130px;
+      margin: 0 auto 14px;
+      border-radius: 50%;
+      position: relative;
+    }
 
-.gen-frame-elder::before {
-  content: '';
-  position: absolute;
-  inset: -7px;
-  border-radius: 50%;
-  border: 1px solid rgba(201, 134, 10, .4);
-}
+    .gen-frame-elder::before {
+      content: '';
+      position: absolute;
+      inset: -7px;
+      border-radius: 50%;
+      border: 1px solid rgba(201, 134, 10, .4);
+    }
 
-.gen-frame-elder img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 4px solid white;
-  box-shadow: 0 6px 20px rgba(201, 134, 10, .25);
-  display: block;
-}
+    .gen-frame-elder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid white;
+      box-shadow: 0 6px 20px rgba(201, 134, 10, .25);
+      display: block;
+    }
 
-/* Kid — playful spinning dashed ring */
-.gen-frame-kid {
-  width: 130px;
-  height: 130px;
-  margin: 0 auto 14px;
-  border-radius: 50%;
-  position: relative;
-}
+    /* Kid — playful spinning dashed ring */
+    .gen-frame-kid {
+      width: 130px;
+      height: 130px;
+      margin: 0 auto 14px;
+      border-radius: 50%;
+      position: relative;
+    }
 
-.gen-frame-kid::before {
-  content: '';
-  position: absolute;
-  inset: -7px;
-  border-radius: 50%;
-  border: 2px dashed rgba(232, 98, 10, .45);
-  animation: kidSpin 20s linear infinite;
-}
+    .gen-frame-kid::before {
+      content: '';
+      position: absolute;
+      inset: -7px;
+      border-radius: 50%;
+      border: 2px dashed rgba(232, 98, 10, .45);
+      animation: kidSpin 20s linear infinite;
+    }
 
-@keyframes kidSpin { to { transform: rotate(360deg) } }
+    @keyframes kidSpin {
+      to {
+        transform: rotate(360deg)
+      }
+    }
 
-.gen-frame-kid img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 4px solid white;
-  box-shadow: 0 6px 20px rgba(201, 134, 10, .25);
-  display: block;
-}
+    .gen-frame-kid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid white;
+      box-shadow: 0 6px 20px rgba(201, 134, 10, .25);
+      display: block;
+    }
 
-.gen-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--maroon);
-  margin-bottom: 2px;
-}
+    .gen-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--maroon);
+      margin-bottom: 2px;
+    }
 
-.gen-tag {
-  font-family: 'Cinzel', serif;
-  font-size: 10px;
-  letter-spacing: 2px;
-  color: var(--gold);
-  text-transform: uppercase;
-}
+    .gen-tag {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
 
-.gen-connector {
-  font-size: 26px;
-  animation: connPulse 2s ease-in-out infinite alternate;
-}
+    .gen-connector {
+      font-size: 26px;
+      animation: connPulse 2s ease-in-out infinite alternate;
+    }
 
-@keyframes connPulse {
-  from { transform: scale(1) }
-  to { transform: scale(1.15) }
-}
+    @keyframes connPulse {
+      from {
+        transform: scale(1)
+      }
 
-.gen-msg {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 19px;
-  font-style: italic;
-  color: var(--tm);
-  line-height: 1.85;
-  max-width: 420px;
-  margin: 0 auto;
-  text-align: center;
-}
+      to {
+        transform: scale(1.15)
+      }
+    }
+
+    .gen-msg {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      font-style: italic;
+      color: var(--tm);
+      line-height: 1.85;
+      max-width: 420px;
+      margin: 0 auto;
+      text-align: center;
+    }
 
     /* Marigold garland top */
     .i-garland {
@@ -854,7 +863,8 @@
     .hflat {
       font-family: 'Cinzel', serif;
       /* font-family: 'Arial', sans-serif; */
-  font-weight: bold; /* Or use the numeric equivalent: 700 */
+      font-weight: bold;
+      /* Or use the numeric equivalent: 700 */
       font-size: 16px;
       letter-spacing: 2px;
       color: var(--gold);
@@ -1090,12 +1100,12 @@
     }
 
     .ph-date {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--goldl);
-  font-style: italic
-}
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--goldl);
+      font-style: italic
+    }
 
     .pi-list {
       padding: 16px 22px;
@@ -1111,20 +1121,20 @@
     }
 
     .pi-t {
-  font-family: 'Cinzel', serif;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: .5px;
-  min-width: 84px;
-  text-align: center;
-  flex-shrink: 0;
-  color: var(--maroon);
-  background: linear-gradient(135deg, #FDEBC8, #F5D88A);
-  border: 1.5px solid var(--goldl);
-  border-radius: 50px;
-  padding: 6px 10px;
-  box-shadow: 0 2px 6px rgba(201, 134, 10, .25);
-}
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .5px;
+      min-width: 84px;
+      text-align: center;
+      flex-shrink: 0;
+      color: var(--maroon);
+      background: linear-gradient(135deg, #FDEBC8, #F5D88A);
+      border: 1.5px solid var(--goldl);
+      border-radius: 50px;
+      padding: 6px 10px;
+      box-shadow: 0 2px 6px rgba(201, 134, 10, .25);
+    }
 
     .pi-dot {
       width: 8px;
@@ -1884,30 +1894,31 @@
     </section>
 
 
-<section class="gen-sec">
-  <div class="sh rev">
-    <span class="sl">Blessings Meet Joy</span>
-    <h2 class="st">आशीर्वाद और उमंग — दोनों मिलकर आपको बुला रहे हैं 💌</h2>
-  </div>
-  <div class="gen-row rev">
-    <div class="gen-person">
-      <div class="gen-frame-elder">
-        <img src="asset/elder.jpg" alt="रामकंवरी देवी">
+    <section class="gen-sec">
+      <div class="sh rev">
+        <span class="sl">Blessings Meet Joy</span>
+        <h2 class="st">आशीर्वाद और उमंग — दोनों मिलकर आपको बुला रहे हैं 💌</h2>
       </div>
-      <p class="gen-name">रामकंवरी देवी</p>
-      <p class="gen-tag">दादी माँ</p>
-    </div>
-    <div class="gen-connector"></div>
-    <div class="gen-person">
-      <div class="gen-frame-kid">
-        <img src="asset/rudvik.jpg" alt="रुद्विक">
+      <div class="gen-row rev">
+        <div class="gen-person">
+          <div class="gen-frame-elder">
+            <img src="asset/elder.jpg" alt="रामकंवरी देवी">
+          </div>
+          <p class="gen-name">रामकंवरी देवी</p>
+          <p class="gen-tag">दादी माँ</p>
+        </div>
+        <div class="gen-connector"></div>
+        <div class="gen-person">
+          <div class="gen-frame-kid">
+            <img src="asset/rudvik.jpg" alt="रुद्विक">
+          </div>
+          <p class="gen-name">रुद्विक</p>
+          <p class="gen-tag">सबसे छोटा सदस्य</p>
+        </div>
       </div>
-      <p class="gen-name">रुद्विक</p>
-      <p class="gen-tag">सबसे छोटा सदस्य</p>
-    </div>
-  </div>
-  <p class="gen-msg rev">सबसे छोटी मुस्कान से लेकर सबसे बड़े आशीर्वाद तक...  हमारा परिवार आपको आमंत्रित करता है 🪔</p>
-</section>
+      <p class="gen-msg rev">सबसे छोटी मुस्कान से लेकर सबसे बड़े आशीर्वाद तक... हमारा परिवार आपको आमंत्रित करता है 🪔
+      </p>
+    </section>
 
     <!-- WISHES WIDGET -->
     <section class="sec">
@@ -1927,7 +1938,7 @@
       </div>
     </section>
 
-    
+
 
     <!-- FOOTER -->
     <footer class="footer">
