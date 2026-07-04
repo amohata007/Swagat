@@ -2032,64 +2032,64 @@
     }
 
     function finishIntro() {
-  if (done) return; done = true;
-  const intro = document.getElementById('intro');
-  intro.classList.add('bye');
-  setTimeout(() => {
-    intro.style.display = 'none';
-    document.getElementById('main').classList.add('vis');
-    document.getElementById('musicBar').classList.add('vis');
-    startPetals(); initReveal();
-    startAutoScroll();
-  }, 800);
-}
-
-function startAutoScroll() {
-  let scrolling = true;
-  const SPEED = 2.8; // px per frame — lower = slower. Try 0.3–0.8
-
-  function stopAutoScroll() {
-    scrolling = false;
-    window.removeEventListener('wheel', stopAutoScroll);
-    window.removeEventListener('touchstart', stopAutoScroll);
-    window.removeEventListener('keydown', stopAutoScroll);
-    document.removeEventListener('click', stopOnFormClick, true);
-  }
-
-  // Stop the moment the guest tries to control scroll themselves
-  window.addEventListener('wheel', stopAutoScroll, { passive: true });
-  window.addEventListener('touchstart', stopAutoScroll, { passive: true });
-  window.addEventListener('keydown', stopAutoScroll);
-
-  // Also stop if they tap into the wish form inputs, so typing isn't disrupted
-  function stopOnFormClick(e) {
-    if (e.target.closest('.wish-input-row') || e.target.closest('.wish-btn')) {
-      stopAutoScroll();
+      if (done) return; done = true;
+      const intro = document.getElementById('intro');
+      intro.classList.add('bye');
+      setTimeout(() => {
+        intro.style.display = 'none';
+        document.getElementById('main').classList.add('vis');
+        document.getElementById('musicBar').classList.add('vis');
+        startPetals(); initReveal();
+        setTimeout(startAutoScroll, 1000);
+      }, 800);
     }
-  }
-  document.addEventListener('click', stopOnFormClick, true);
 
-  function step() {
-    if (!scrolling) return;
-    const bottom = document.documentElement.scrollHeight - window.innerHeight;
-    if (window.scrollY >= bottom - 2) {
-      stopAutoScroll();
-      return;
+    function startAutoScroll() {
+      let scrolling = true;
+      const SPEED = 2.8; // px per frame — lower = slower. Try 0.3–0.8
+
+      function stopAutoScroll() {
+        scrolling = false;
+        window.removeEventListener('wheel', stopAutoScroll);
+        window.removeEventListener('touchstart', stopAutoScroll);
+        window.removeEventListener('keydown', stopAutoScroll);
+        document.removeEventListener('click', stopOnFormClick, true);
+      }
+
+      // Stop the moment the guest tries to control scroll themselves
+      window.addEventListener('wheel', stopAutoScroll, { passive: true });
+      window.addEventListener('touchstart', stopAutoScroll, { passive: true });
+      window.addEventListener('keydown', stopAutoScroll);
+
+      // Also stop if they tap into the wish form inputs, so typing isn't disrupted
+      function stopOnFormClick(e) {
+        if (e.target.closest('.wish-input-row') || e.target.closest('.wish-btn')) {
+          stopAutoScroll();
+        }
+      }
+      document.addEventListener('click', stopOnFormClick, true);
+
+      function step() {
+        if (!scrolling) return;
+        const bottom = document.documentElement.scrollHeight - window.innerHeight;
+        if (window.scrollY >= bottom - 2) {
+          stopAutoScroll();
+          return;
+        }
+        window.scrollBy(0, SPEED);
+        requestAnimationFrame(step);
+      }
+
+      // Small pause before starting, so the reveal transition settles first
+      setTimeout(() => requestAnimationFrame(step), 600);
     }
-    window.scrollBy(0, SPEED);
-    requestAnimationFrame(step);
-  }
-
-  // Small pause before starting, so the reveal transition settles first
-  setTimeout(() => requestAnimationFrame(step), 600);
-}
     function skipIntro() { finishIntro(); }
 
 
     // ══════════════════════════════════
     // COUNTDOWN
     // ══════════════════════════════════
-    const tgt = new Date('2026-07-11T09:00:00');
+    const tgt = new Date('2026-07-11T12:15:00');
     let ps = -1;
     function tick() {
       const diff = tgt - new Date();
